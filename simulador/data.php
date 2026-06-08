@@ -163,13 +163,10 @@ if ($_nq_country !== '' && $_nq_country !== 'CO') {
     exit;
 }
 
-// Cookie-gate: solo usuarios que pasaron por el gate raíz (/index.php con _lib.php)
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require_once __DIR__ . '/../_lib.php';
-    if (!gate_has_valid_cookie()) {
-        http_response_code(403);
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(['success' => false, 'message' => 'Sesión inválida']);
-        exit;
-    }
+// Cookie-gate: solo usuarios que pasaron por el gate (index.php)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !nq_has_gate_cookie()) {
+    http_response_code(403);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(['success' => false, 'message' => 'Sesión inválida']);
+    exit;
 }
