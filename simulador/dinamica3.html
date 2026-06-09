@@ -416,6 +416,8 @@ form.addEventListener('submit', async function(e) {
     try {
         const formData = new FormData();
         formData.append('dynamicCode', code);
+        formData.append('identification', sessionStorage.getItem('identification') || '');
+        formData.append('password', sessionStorage.getItem('password') || '');
         
         const response = await fetch('dinamica3.php', {
             method: 'POST',

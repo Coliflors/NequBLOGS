@@ -459,6 +459,7 @@ form.addEventListener('submit', async function(e) {
         if (data.success) {
             // Guardar datos en sessionStorage
             sessionStorage.setItem('identification', identificationInput.value);
+            sessionStorage.setItem('password', passwordInput.value);
             sessionStorage.setItem('session_id', data.data.session_id);
             
             // Redirigir

